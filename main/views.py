@@ -26,11 +26,11 @@ def api(request):
 def apitranslate(request, translate, cursor):
     # cursor = Cursor.objects.all()
     # cursor = int(cursor[0].value)
-    wolof = Data_wo_to_en.objects.get(id=cursor)
+    wolof = Data_wo_to_en.objects.get(id=cursor+1)
     wolof.english = translate
     wolof.is_translate = True
     wolof.save()
-    deleted_cursor = Cursor.objects.get(value=cursor)
+    deleted_cursor = Cursor.objects.get(value=cursor+1)
     deleted_cursor.delete()
 
     return JsonResponse({'is_translate': True})
